@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLE-SBS Evacuation Simulator</title>
+<meta name="description" content="Pre-Launch Emergency: The Slidewire Basket System. Change the rocket, the pad and the pods, and see whether everyone gets clear in time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">
+    <h1>PLE-SBS</h1>
+    <p>Pre-Launch Emergency: The Slidewire Basket System</p>
+  </div>
+  <nav class="links">
+    <a href="#controls" class="to-inputs">Change the inputs</a>
+    <a href="../paper/PLE-SBS.pdf">Paper (PDF)</a>
+    <a href="#model" data-tab-link="model">How the model works</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="controls" id="controls" aria-label="Inputs">
+    <form id="form" autocomplete="off"></form>
+    <div class="control-actions">
+      <button type="button" id="reset">Reset to defaults</button>
+      <button type="button" id="share">Copy link to this design</button>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <section class="verdict" aria-live="polite">
+      <p id="verdict" class="verdict-line">Running the model…</p>
+      <p id="verdict-sub" class="verdict-sub"></p>
+    </section>
+
+    <section class="drawing">
+      <canvas id="elev" aria-label="Side view of the launch pad, slidewires and pods"></canvas>
+      <div class="playbar">
+        <button type="button" id="play" aria-label="Play">Play</button>
+        <div class="speeds" role="group" aria-label="Playback speed">
+          <button type="button" data-speed="1">1×</button>
+          <button type="button" data-speed="4" class="on">4×</button>
+          <button type="button" data-speed="10">10×</button>
+        </div>
+        <input type="range" id="scrub" min="0" max="200" step="0.1" value="0" aria-label="Time since alarm">
+        <output id="clock">t = 0 s</output>
+      </div>
+      <p class="drawing-note" id="drawing-note"></p>
+    </section>
+
+    <section class="figures">
+      <dl class="kpis" id="kpis"></dl>
+      <figure class="plan">
+        <canvas id="plan" aria-label="Plan view: hazard rings, wires and terminus"></canvas>
+        <figcaption>Plan view. Rings are the hazard distances; lines are the wires.</figcaption>
+      </figure>
+    </section>
+
+    <section class="analysis">
+      <div class="tabs" role="tablist">
+        <button role="tab" data-tab="timeline" aria-selected="true">Timeline</button>
+        <button role="tab" data-tab="speed">Speed</button>
+        <button role="tab" data-tab="mc">Uncertainty</button>
+        <button role="tab" data-tab="trade">Series vs parallel</button>
+        <button role="tab" data-tab="sens">Sensitivity</button>
+        <button role="tab" data-tab="bom">Materials &amp; BOM</button>
+        <button role="tab" data-tab="scale">Scale model</button>
+        <button role="tab" data-tab="model">Model</button>
+      </div>
+      <div class="panel" id="panel-timeline" role="tabpanel"></div>
+      <div class="panel" id="panel-speed" role="tabpanel" hidden></div>
+      <div class="panel" id="panel-mc" role="tabpanel" hidden>
+        <p class="panel-intro">Repeats the evacuation many times with realistic spread in human reaction, boarding, friction, crew mass and wind (up to 34 knots from any direction). The 95th-percentile time is the number to design to.</p>
+        <div class="row"><label>Runs <select id="mc-n"><option>200</option><option selected>500</option><option>1000</option></select></label><button type="button" id="mc-run" class="primary">Run Monte Carlo</button></div>
+        <div id="mc-out"></div>
+      </div>
+      <div class="panel" id="panel-trade" role="tabpanel" hidden>
+        <p class="panel-intro">Every layout from 1 to 6 wires and 1 to 6 pods per wire. Series = more pods on one wire, released one after another. Parallel = more wires. Cells show time until everyone is safe; outlined cells are the best time for their cost.</p>
+        <div class="row"><label>Scenario <select id="trade-scn">
+          <option value="inputs">Your crew and timings</option>
+          <option value="24" selected>24 people already on the platform</option>
+          <option value="36">36 people already on the platform</option>
+        </select></label></div>
+        <div id="trade-out"></div>
+      </div>
+      <div class="panel" id="panel-sens" role="tabpanel" hidden>
+        <p class="panel-intro">Each input moved 20% down and up while the others stay fixed. Long bars are where design effort pays off.</p>
+        <div id="sens-out"></div>
+      </div>
+      <div class="panel" id="panel-scale" role="tabpanel" hidden>
+        <p class="panel-intro">Load runs from the tabletop slidewire (CSV with columns <code>run, wire_length_m, drop_m, mass_kg, time_s, notes</code>). The model fits rolling resistance μ and drag area to the measured times, then compares prediction with measurement.</p>
+        <div class="row">
+          <label class="file">Choose CSV <input type="file" id="csv" accept=".csv,text/csv"></label>
+          <a href="../data/scale_model.csv" download>Download the CSV template</a>
+          <a href="../docs/scale-model-protocol.md">Test protocol</a>
+        </div>
+        <textarea id="csv-text" rows="5" spellcheck="false" placeholder="…or paste CSV rows here"></textarea>
+        <div class="row"><button type="button" id="fit" class="primary">Fit model to runs</button></div>
+        <div id="scale-out"></div>
+      </div>
+      <div class="panel" id="panel-bom" role="tabpanel" hidden></div>
+      <div class="panel prose" id="panel-model" role="tabpanel" hidden></div>
+    </section>
+
+    <section class="checks">
+      <h2>Design checks</h2>
+      <ul id="flags"></ul>
+    </section>
+
+    <footer class="foot">
+      <p>A student engineering model by Adithya Kesan Jayakanth, Padma Seshadri Bala Bhavan, K.K. Nagar, Chennai. Mentor and guide: Mrs. Abitha Peter, Class 12 physics teacher. Results are model predictions built on public data and stated assumptions; they are not a certified safety analysis.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="../sim/core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
