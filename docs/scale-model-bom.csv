@@ -1,0 +1,33 @@
+section,item,specification,qty,unit,approx_inr
+printed,wheel_x4.stl,V-groove wheel; 624ZZ press fit; PETG,4,pcs,
+printed,trolley_plate_x4.stl,side plate 72x50x4 mm; PETG,4,pcs,
+printed,keeper_sleeve_x4.stl,anti-derailment sleeve 6x11 mm; PETG,4,pcs,
+printed,hanger_x2.stl,basket hanger; PETG,2,pcs,
+printed,basket_x2.stl,open-sided pod 110x75x60 mm; PETG,2,pcs,
+printed,fin_clamp_x2.stl,brake fin clamp; PETG,2,pcs,
+printed,magnet_channel_150mm_x4.stl,magnet track 150 mm (optional); PETG,4,pcs,
+printed,start_gate_x1.stl,start gate; PETG,1,pcs,
+printed,start_pin_x2.stl,pull-pin; PETG,2,pcs,
+rig,stainless steel wire rope,1.5 mm 7x7; breaking load 1.5-2 kN,10,m,350
+rig,wire rope clips or ferrules,for 1.5-2 mm rope,6,pcs,150
+rig,wire rope thimbles,2 mm,2,pcs,60
+rig,top anchor,12 mm plywood 300x150 mm + 2 G-clamps (or 2 wall eye-bolts),1,set,500
+rig,pulley,single sheave 25-40 mm ball bearing with bracket,1,pcs,250
+rig,counterweight,bucket of sand or bricks 16 kg (1.5 kg pod) to 30 kg (3 kg pod) + S-hook,1,pcs,150
+rig,turnbuckle (alternative),M6 hook-eye,1,pcs,150
+rig,foam end stop,50 mm EPE foam block,1,pcs,150
+pods,ball bearings,624ZZ 4x13x5 mm,6,pcs,240
+pods,M4 hardware,M4x25 bolts 6 + nyloc nuts 6 + washers 12,1,set,120
+pods,M3 hardware,M3x16 x4 + M3x12 x4 + M3x20 x6 + nyloc nuts 14,1,set,150
+pods,ballast,steel washers or coins in 0.5 kg bags,3,kg,350
+pods,cable ties,150 mm,20,pcs,40
+pods,PETG filament,1.75 mm,0.4,kg,550
+brake (optional),neodymium magnets,N42 20x10x5 mm magnetised through 5 mm,56,pcs,1100
+brake (optional),brake fins,2 mm aluminium 50x30 mm (optional 2 mm copper),2,pcs,150
+brake (optional),mounting plank,18 mm plywood 700x60 mm + M4 wood screws,1,set,250
+brake (optional),instant glue,cyanoacrylate,1,pcs,60
+measure,digital scale,5 kg x 1 g,1,pcs,400
+measure,tape measure,10 m,1,pcs,250
+measure,coloured tape,for 0.5 m floor marks,1,roll,60
+safety,safety glasses,,2,pcs,200
+measure,phone 240 fps + video analysis app,existing,1,pcs,0
