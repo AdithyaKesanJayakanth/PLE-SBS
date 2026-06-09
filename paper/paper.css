@@ -53,3 +53,8 @@ table + p, table + h1, table + h2 { margin-top: 6pt; }
 #references ~ p, section#references p { font-size: 6.8pt; line-height: 1.18; text-align: left; padding-left: 14pt; text-indent: -14pt; margin-bottom: 2pt; }
 section#references a, #references ~ p a { hyphens: none; overflow-wrap: anywhere; word-break: break-all; }
 section#references p { hyphens: none; }
+
+/* highlighted contribution */
+.addon { border-left: 2.5pt solid var(--accent); background: #eaf1f7; padding: 4pt 6pt; margin: 4pt 0 6pt; break-inside: avoid; }
+.addon p { margin: 0; }
+.addon strong { color: var(--accent); }

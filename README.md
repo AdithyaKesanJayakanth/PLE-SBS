@@ -2,6 +2,20 @@
 
 A student engineering study of a gravity-driven slidewire escape system for crew and close-out technicians at a crewed launch pad, with a sizing method for any launch pad (span ≈ 100 m + 4 × crew access height) and a worked example for a low, 42 m pad. It goes from the safety problem and its requirements, through physical models and a simulator, to a design that has been run, checked against NASA systems and revised.
 
+> [!IMPORTANT]
+> **My special add-on to the existing egress system: one wire, a switch yard and a bay for every pod.**
+>
+> Existing slidewires give every basket its own wire and brake it at the end of that wire. PLE-SBS keeps the proven ride but moves the braking off the wire. At the bottom, self-indexing points send each pod into its own braked bay beside the bunker, so:
+>
+> - all the pods share **one wire** and leave about 8 s apart (37 s with a single dock);
+> - one wire clears 24 people in 113 s in a design headwind, close to six separate wires (111 s);
+> - a pod whose magnetic brake has failed still stops at 1.4 g in its bay's drag-chain bed;
+> - nothing needs power: the points, brakes and release interlock are all passive.
+>
+> See Section 6.2 of the paper and the switch-yard option in the simulator.
+
+**Simulator:** https://adithyakesan.com/ple_sbs/
+
 - **Paper** (≤ 7 pages): `paper/PLE-SBS.pdf`, editable copy `paper/PLE-SBS.docx`, source `paper/paper.md`
 - **Simulator**: `web/index.html`. Pick any rocket and pad, choose a single dock or a switch yard, a catch net or drag-chain bed, fail a magnetic brake, and watch the evacuation. A Materials & BOM tab lists what the chosen design is made of.
 - **Physics**: `sim/core.js`, one dependency-free file shared by the website and the paper's figures
