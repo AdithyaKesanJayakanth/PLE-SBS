@@ -71,7 +71,7 @@ docs/scale-model-bom.md      rig parts list, prices, assembly; docs/scale-model-
 cad/make_parts.py            parametric 3D-printed parts -> cad/stl/*.stl (+ cad/parts_preview.png)
 cad/make_drawings.py         rig layout and trolley assembly drawings
 test/core.test.js            physics unit tests
-site/build.sh                packages the simulator as a static site under /ple-sbs/
+site/build.sh                packages the simulator as a static site (published at adithyakesan.com/ple_sbs/)
 private/                     author notes (sources, checklist); git-ignored, never published
 ```
 
