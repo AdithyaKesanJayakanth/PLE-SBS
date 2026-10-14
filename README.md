@@ -19,6 +19,8 @@ A student engineering study of a gravity-driven slidewire escape system for crew
 - **Paper** (≤ 7 pages): `paper/PLE-SBS.pdf`, editable copy `paper/PLE-SBS.docx`, source `paper/paper.md`
 - **Simulator**: `web/index.html`. Pick any rocket and pad, choose a single dock or a switch yard, a catch net or drag-chain bed, fail a magnetic brake, and watch the evacuation. A Materials & BOM tab lists what the chosen design is made of.
 - **Physics**: `sim/core.js`, one dependency-free file shared by the website and the paper's figures
+- **Video** (one minute, 1080p, first-person narration): `video/PLESBS_60s.mp4`, script and scene list in `video/script.md`, built by `video/make_video.py`
+- **Poster** (A0 landscape): `PLESBS_Poster.pdf`, source `poster/PLESBS_Poster.tex`. Rebuild with `.venv/bin/python poster/make_poster_figs.py && (cd poster && tectonic PLESBS_Poster.tex) && cp poster/PLESBS_Poster.pdf .`
 
 Author: Adithya Kesan Jayakanth, Padma Seshadri Bala Bhavan, K.K. Nagar, Chennai. Mentor and guide: Mrs. Abitha Peter, Class 12 physics teacher.
 
@@ -64,6 +66,8 @@ sim/core.js                  physics: hazard, cable, pod dynamics, evacuation, M
 sim/export.js                runs every study in the paper -> data/results.json
 figures/make_figures.py      paper figures from data/results.json
 paper/                       paper.md (source), template.html + paper.css (layout), build.sh
+poster/                      PLESBS_Poster.tex (A0 poster), make_poster_figs.py -> poster/img/
+video/                       make_video.py -> PLESBS_60s.mp4 + script.md (simulator captures, switch-yard animation, narration)
 web/                         simulator UI (index.html, app.js, style.css)
 data/scale_model.csv         scale-model runs (template; add measurements)
 docs/scale-model-protocol.md how to test the 1:50 tabletop rig
